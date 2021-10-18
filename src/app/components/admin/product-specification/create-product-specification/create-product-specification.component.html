@@ -1,0 +1,44 @@
+<div class="container">
+
+    <form (ngSubmit)="onSubmit()">
+        <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+            <div class="col-8">
+                <br />
+                <h2>Create Product Specification</h2>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="text" id="productTypeId" name="productTypeId" name="productTypeId" [(ngModel)]="productTypeId" hidden />
+            <div class="col-8">
+                <div class="form-group mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" placeholder="Product Specification Name" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+        <div class="col-8">
+            <hr />
+            <h4>Current Specifications - {{ productType.name }}</h4>
+            <br />
+        </div>
+    </div>
+    
+    <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+        <div class="col-8">
+            <ul class="list-group" #myul>
+                <li *ngFor="let productSpecification of productType.productSpecifications" class="list-group-item">
+                    {{ productSpecification.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

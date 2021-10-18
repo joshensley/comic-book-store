@@ -1,0 +1,39 @@
+<div *ngIf="products != undefined; else elseBlock" class="row justify-content-center mt-4">
+
+    <div *ngIf="products.totalPages > 0">
+        <app-product-item 
+            class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" 
+            *ngFor="let product of products.productList" 
+            [product]="product">
+        </app-product-item>
+
+        <nav aria-label="Page navigation">
+            <div class="text-center">
+                <p>Page {{ products.pageIndex }} of {{ products.totalPages }}</p>
+            </div>
+            <ul class="pagination justify-content-end">
+                <li class="page-item {{ products.hasPreviousPage ? '' : 'disabled' }}">
+                    <a class="page-link" (click)="previousPageClick()" style="cursor: pointer;">Previous</a>
+                </li>
+                <li class="page-item {{ products.hasNextPage ? '' : 'disabled' }}">
+                    <a class="page-link" (click)="nextPageClick()" style="cursor: pointer;">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div *ngIf="products.totalPages <= 0" class="text-center">
+        <h1>No Products</h1>
+    </div>
+   
+</div>
+
+<ng-template #elseBlock>
+    <div class="row justify-content-center mt-4">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>
+
+

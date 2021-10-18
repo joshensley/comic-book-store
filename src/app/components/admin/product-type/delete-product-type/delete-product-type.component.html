@@ -1,0 +1,12 @@
+<div class="container">
+    <div *ngIf="productType !== undefined">
+        <h1 class="mt-3"> Delete Product Type</h1>
+        <br />
+        <h4 style="color: red">Are you sure you want to delete Product Type: <strong>{{ productType.name }}</strong>?</h4>
+        <br />
+        <form (ngSubmit)="onSubmit()">
+            <input type="text" id="id" name="id" [(ngModel)]="id" hidden />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

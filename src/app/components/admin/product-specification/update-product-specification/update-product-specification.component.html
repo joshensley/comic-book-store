@@ -1,0 +1,35 @@
+<div class="container">
+
+    <!-- Displays a message if category type is created, edited, or deleted -->
+    <div *ngIf="notification" class="alert alert-success alert-dismissible mt-3 text-center" role="alert" style="width: 350px; margin: 0 auto;">
+
+        <div [ngSwitch]="actionType">
+            <div *ngSwitchCase="'edited'">
+                Product Specifications for <strong>{{ name }}</strong> was edited!
+            </div>
+            <div *ngSwitchDefault></div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" *ngIf="productType !== undefined">
+        <div class="container row p-0 m-0">
+            <div class="col-8">
+                <br />
+                <h2>Edit Product Specification</h2>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div *ngFor="let productSpecification of productType.productSpecifications; index as i" class="mb-3">
+                    <input type="text" class="form-control" id="productType-{{i}}" name="productType-{{i}}" [(ngModel)]="productSpecification.name" />
+                </div>
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+            
+            
+        </div>
+    </form>
+</div>

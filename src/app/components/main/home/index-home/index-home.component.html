@@ -1,0 +1,12 @@
+<div *ngIf="products != undefined" class="container">
+
+    <app-search-bar-index-home (onClearSearch)="clearSearch()" (onClearSearchItem)="clearSearchItem()"></app-search-bar-index-home>
+
+    <app-offcanvas-index-home (onSearchProducts)="searchProducts()"></app-offcanvas-index-home>
+
+    <app-products 
+        [products]="products" 
+        (onNextPage)="nextPage(products.pageIndex)"
+        (onPreviousPage)="previousPage(products.pageIndex)"
+    ></app-products>
+</div>

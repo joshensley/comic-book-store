@@ -1,0 +1,31 @@
+<div class="container mb-5">
+    <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+        <div class="col-8">
+            <br />
+            <h2>Delete Product Specification</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+        <div class="col-8">
+            <h4>Current Specifications - {{ productType.name }}</h4>
+            <br />
+        </div>
+    </div>
+
+    <div *ngIf="productType !== undefined" class="container row p-0 m-0">
+        <div class="col-8">
+            <ul class="list-group" id="myul" #myul>
+                <li *ngFor="let productSpecification of productType.productSpecifications" class="list-group-item" id="list-item-{{productSpecification.id}}" >
+                        {{ productSpecification.name }} 
+                        <button class="btn btn-danger btn-sm" value="{{productSpecification.id}}" (click)="onDelete(productSpecification.id)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+

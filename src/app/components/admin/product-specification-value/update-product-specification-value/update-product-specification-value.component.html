@@ -1,0 +1,42 @@
+<div class="container">
+
+    <!-- Display a message if edited -->
+    <div *ngIf="notification" class="alert alert-success alert-dismissible mt-3 text-center" role="alert" style="width: 350px; margin: 0 auto;">
+
+        <div [ngSwitch]="actionType">
+            <div *ngSwitchCase="'edited'">
+                Product Specifications Values were edited!
+            </div>
+            <div *ngSwitchDefault></div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="container row p-0 m-0">
+            <div class="row p-0 m-0">
+                <div class="col-8">
+                    <br />
+                    <h2>Edit Product Specification Values</h2>
+                    
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="product !== undefined" class="row">
+            <div class="col-8">
+                <div *ngFor="let productSpecificationNameValue of product.productSpecificationNameValues; index as i" class="mb-3">
+                    <label for="product-{{i}}">{{productSpecificationNameValue.name}}</label>
+                    <input type="text" 
+                        class="form-control" 
+                        id="product-{{i}}" 
+                        name="product-{{i}}" 
+                        [(ngModel)]="productSpecificationNameValue.value" />
+                    
+                </div>
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
