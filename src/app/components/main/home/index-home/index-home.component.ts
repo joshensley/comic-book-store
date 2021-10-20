@@ -27,10 +27,7 @@ export class IndexHomeComponent implements OnInit {
     private router: Router
   ) { 
     this.subscription = this.productsService.onSearchProductName()
-      .subscribe(value => { 
-        this.search = value 
-        console.log(value);
-      });
+      .subscribe(value => this.search = value);
 
     this.subscription = this.productsService.onSearchCategoryType()
       .subscribe(value => this.categoryType = value);
@@ -43,7 +40,6 @@ export class IndexHomeComponent implements OnInit {
     
     // set the search values from queryParams
     this.route.queryParams.subscribe((params) => {
-      console.log(params);
       this.pageNumber = params['pageNumber'];
       this.search = params['search'];
       this.categoryType = params['categoryType'];
@@ -56,10 +52,10 @@ export class IndexHomeComponent implements OnInit {
     if (this.productType === undefined) this.productType = "";
     
     this.productsService.getSearchProducts(
-        this.search, 
-        this.pageNumber, 
-        this.categoryType,
-        this.productType).subscribe((products) => this.products = products);
+      this.search, 
+      this.pageNumber, 
+      this.categoryType,
+      this.productType).subscribe((products) => this.products = products);
   }
 
   searchProducts() {
@@ -124,9 +120,7 @@ export class IndexHomeComponent implements OnInit {
     if (this.productType === undefined) this.productType = "";
 
     this.productsService.getSearchProducts(this.search, nextPage, this.categoryType, this.productType)
-      .subscribe((products) => {
-        this.products = products;
-      });
+      .subscribe((products) => this.products = products);
   }
 
   previousPage(pageIndex: number) {
@@ -143,9 +137,7 @@ export class IndexHomeComponent implements OnInit {
     if (this.productType === undefined) this.productType = "";
 
     this.productsService.getSearchProducts(this.search, previousPage, this.categoryType, this.productType)
-      .subscribe((products) => {
-        this.products = products;
-      });
+      .subscribe((products) => this.products = products);
   }
 
   clearSearch() {

@@ -40,6 +40,9 @@ import { CreateProductImageComponent } from './components/admin/product-image/cr
 import { DeleteProductImageComponent } from './components/admin/product-image/delete-product-image/delete-product-image.component';
 import { OffcanvasIndexHomeComponent } from './components/main/home/offcanvas-index-home/offcanvas-index-home.component';
 import { SearchBarIndexHomeComponent } from './components/main/home/search-bar-index-home/search-bar-index-home.component';
+import { ProductInventoryUnitComponent } from './components/admin/product-inventory-unit/product-inventory-unit/product-inventory-unit.component';
+import { CreateProductInventoryUnitComponent } from './components/admin/product-inventory-unit/create-product-inventory-unit/create-product-inventory-unit.component';
+import { DeleteProductInventoryUnitComponent } from './components/admin/product-inventory-unit/delete-product-inventory-unit/delete-product-inventory-unit.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -78,7 +81,10 @@ export function tokenGetter() {
     CreateProductImageComponent,
     DeleteProductImageComponent,
     OffcanvasIndexHomeComponent,
-    SearchBarIndexHomeComponent
+    SearchBarIndexHomeComponent,
+    ProductInventoryUnitComponent,
+    CreateProductInventoryUnitComponent,
+    DeleteProductInventoryUnitComponent
   ],
   imports: [
     BrowserModule,

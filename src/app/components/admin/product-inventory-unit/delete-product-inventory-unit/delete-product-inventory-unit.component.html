@@ -1,0 +1,12 @@
+<div class="container">
+    <div *ngIf="productInventoryUnit !== undefined">
+        <h3 class="mt-3"> Delete Product Inventory Unit</h3>
+        <br />
+        <h4 style="color: red">Are you sure you want to delete Product Inventory Item: {{ productInventoryUnit.productName }}</h4>
+        <br />
+        <form (ngSubmit)="onSubmit()">
+            <input type="text" id="id" name="id" [(ngModel)]="id" hidden />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+</div>

@@ -28,6 +28,9 @@ import { UpdateProductSpecificationValueComponent } from './components/admin/pro
 import { ProductImageComponent } from './components/admin/product-image/product-image/product-image.component';
 import { CreateProductImageComponent } from './components/admin/product-image/create-product-image/create-product-image.component';
 import { DeleteProductImageComponent } from './components/admin/product-image/delete-product-image/delete-product-image.component';
+import { ProductInventoryUnitComponent } from './components/admin/product-inventory-unit/product-inventory-unit/product-inventory-unit.component';
+import { CreateProductInventoryUnitComponent } from './components/admin/product-inventory-unit/create-product-inventory-unit/create-product-inventory-unit.component';
+import { DeleteProductInventoryUnitComponent } from './components/admin/product-inventory-unit/delete-product-inventory-unit/delete-product-inventory-unit.component';
 
 const routes: Routes = [
   { path: '', component: IndexHomeComponent },
@@ -56,7 +59,10 @@ const routes: Routes = [
   { path: 'admin/edit-product-specification-value/:id', component: UpdateProductSpecificationValueComponent, canActivate: [AuthAdminGuard] },
   { path: 'admin/product-image', component: ProductImageComponent, canActivate: [AuthAdminGuard] },
   { path: 'admin/create-product-image/:id', component: CreateProductImageComponent, canActivate: [AuthAdminGuard] },
-  { path: 'admin/delete-product-image/:id', component: DeleteProductImageComponent, canActivate: [AuthAdminGuard] }
+  { path: 'admin/delete-product-image/:id', component: DeleteProductImageComponent, canActivate: [AuthAdminGuard] },
+  { path: 'admin/product-inventory-unit', component: ProductInventoryUnitComponent, canActivate: [AuthAdminGuard] },
+  { path: 'admin/create-product-inventory-unit', component: CreateProductInventoryUnitComponent, canActivate: [AuthAdminGuard] },
+  { path: 'admin/delete-product-inventory-unit/:id', component: DeleteProductInventoryUnitComponent, canActivate: [AuthAdminGuard] }
 ];
 
 @NgModule({
