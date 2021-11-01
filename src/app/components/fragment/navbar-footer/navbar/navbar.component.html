@@ -42,6 +42,32 @@
             <a class="nav-link" style="cursor: pointer;" (click)="logout()">Logout</a>
           </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link" style="color: yellow" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ navbarCart.length }} <fa-icon [icon]="faShoppingCart"></fa-icon>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+              <li *ngIf="navbarCart.length == 0" class="dropdown-item text-center">
+                <small>No Items in Cart</small>
+              </li>
+              
+              <li *ngFor="let item of navbarCart" class="dropdown-item">
+                <small><strong>{{ item.productName }}</strong> x {{ item.quantity }} | <strong>${{ item.totalPrice }}</strong></small>
+              </li>
+              <hr />
+              <li class="dropdown-item">
+                <div class="row">
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100"><fa-icon [icon]="faShoppingCart"></fa-icon> Cart</button>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+
+          </li>
+
           <li class="nav-item">
             <a class="nav-link disabled">{{ userIsLoggedIn }} {{ userIsAdmin }}</a>
           </li>

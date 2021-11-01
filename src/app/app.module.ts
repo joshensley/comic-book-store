@@ -43,6 +43,7 @@ import { SearchBarIndexHomeComponent } from './components/main/home/search-bar-i
 import { ProductInventoryUnitComponent } from './components/admin/product-inventory-unit/product-inventory-unit/product-inventory-unit.component';
 import { CreateProductInventoryUnitComponent } from './components/admin/product-inventory-unit/create-product-inventory-unit/create-product-inventory-unit.component';
 import { DeleteProductInventoryUnitComponent } from './components/admin/product-inventory-unit/delete-product-inventory-unit/delete-product-inventory-unit.component';
+import { IndexProductComponent } from './components/main/product-page/index-product/index-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -84,7 +85,8 @@ export function tokenGetter() {
     SearchBarIndexHomeComponent,
     ProductInventoryUnitComponent,
     CreateProductInventoryUnitComponent,
-    DeleteProductInventoryUnitComponent
+    DeleteProductInventoryUnitComponent,
+    IndexProductComponent
   ],
   imports: [
     BrowserModule,

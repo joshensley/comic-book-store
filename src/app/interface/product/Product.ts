@@ -20,5 +20,8 @@ export interface Product {
     categoryTypeId: number,
     productType: string,
     productTypeId: number,
+    imageTitle: string,
+    imageUrl: string,
+    inventoryStock: number,
     productSpecificationNameValues: ProductSpecificationNameValue[]
 };

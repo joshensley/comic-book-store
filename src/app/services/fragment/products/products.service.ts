@@ -52,6 +52,8 @@ export class ProductsService {
   onSearchProductType(): Observable<any> {
     return this.productTypeSubject.asObservable();
   }
+
+  // 
   
   // Api
   getProducts(): Observable<Product[]> {
@@ -73,7 +75,8 @@ export class ProductsService {
     params = params.append('productType', productType);
     
     return this.http.get<SearchProduct>(url, { params: params });
-  } 
+  }
+
 
 
 

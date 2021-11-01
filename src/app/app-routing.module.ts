@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Auth Routes
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { AuthAdminGuard } from './services/auth/auth-admin-guard.service';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LogoutComponent } from './components/auth/logout/logout/logout.component';
+
+// Main Routes
+import { IndexHomeComponent } from './components/main/home/index-home/index-home.component';
+import { PrivacyComponent } from './components/site-information/privacy/privacy.component';
+import { IndexProductComponent } from './components/main/product-page/index-product/index-product.component';
+
+// Admin Routes
 import { CategoryTypeComponent } from './components/admin/category-type/category-type/category-type.component';
 import { CreateCategoryTypeComponent } from './components/admin/category-type/create-category-type/create-category-type.component';
 import { DeleteCategoryTypeComponent } from './components/admin/category-type/delete-category-type/delete-category-type.component';
 import { UpdateCategoryTypeComponent } from './components/admin/category-type/update-category-type/update-category-type.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { LogoutComponent } from './components/auth/logout/logout/logout.component';
-import { IndexHomeComponent } from './components/main/home/index-home/index-home.component';
-import { PrivacyComponent } from './components/site-information/privacy/privacy.component';
-import { AuthAdminGuard } from './services/auth/auth-admin-guard.service';
 import { ProductTypeComponent } from './components/admin/product-type/product-type/product-type.component';
 import { CreateProductTypeComponent } from './components/admin/product-type/create-product-type/create-product-type.component';
 import { DeleteProductTypeComponent } from './components/admin/product-type/delete-product-type/delete-product-type.component';
@@ -33,8 +40,11 @@ import { CreateProductInventoryUnitComponent } from './components/admin/product-
 import { DeleteProductInventoryUnitComponent } from './components/admin/product-inventory-unit/delete-product-inventory-unit/delete-product-inventory-unit.component';
 
 const routes: Routes = [
+  // Main Routes
   { path: '', component: IndexHomeComponent },
+  { path: 'product/:id', component: IndexProductComponent },
   { path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard] },
+  // Auth Routes
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
