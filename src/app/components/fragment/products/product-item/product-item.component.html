@@ -6,16 +6,9 @@
     <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ product.productType }} | <small>${{ product.regularPrice }}</small> | <small>Stock: {{ product.inventoryStock }}</small></h6>
-        <!-- <br /> -->
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         
-        <!-- <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a> -->
         <div class="row">
-
-            <!-- <div *ngIf="isLoggedIn === false && product.inventoryStock > 0" class="col-6 text-center">
-                <a class="btn btn-primary" routerLink="/login">Add to Cart</a>
-            </div> -->
 
             <div *ngIf="product.inventoryStock > 0" class="col-6 text-center">
                 <button type="button" class="btn btn-primary" (click)="onClick(product.id)">
@@ -30,7 +23,6 @@
             </div>
 
             <div class="col-6 text-center">
-                <!-- <button type="button" class="btn btn-secondary">Product Info</button> -->
                 <a class="btn btn-secondary" [routerLink]="['/product', product.id]">Product Info</a>
             </div>
         </div>

@@ -77,7 +77,10 @@ export class ProductsService {
     return this.http.get<SearchProduct>(url, { params: params });
   }
 
-
+  getProductById(id: string | undefined): Observable<Product> {
+    const url = this.apiUrl + '/' + id;
+    return this.http.get<Product>(url);
+  }
 
 
 }
