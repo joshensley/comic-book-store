@@ -12,6 +12,8 @@ import { LogoutComponent } from './components/auth/logout/logout/logout.componen
 import { IndexHomeComponent } from './components/main/home/index-home/index-home.component';
 import { PrivacyComponent } from './components/site-information/privacy/privacy.component';
 import { IndexProductComponent } from './components/main/product-page/index-product/index-product.component';
+import { IndexCartComponent } from './components/main/cart-page/index-cart/index-cart.component';
+import { IndexCheckOutComponent } from './components/main/check-out-page/index-check-out/index-check-out.component';
 
 // Admin Routes
 import { CategoryTypeComponent } from './components/admin/category-type/category-type/category-type.component';
@@ -43,6 +45,8 @@ const routes: Routes = [
   // Main Routes
   { path: '', component: IndexHomeComponent },
   { path: 'product/:id', component: IndexProductComponent },
+  { path: 'cart/:id', component: IndexCartComponent },
+  { path: 'check-out/:id', component: IndexCheckOutComponent, canActivate: [AuthGuard] },
   { path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard] },
   // Auth Routes
   { path: 'login', component: LoginComponent},

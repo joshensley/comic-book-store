@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { NavbarService } from 'src/app/services/fragment/navbar/navbar.service';
 import { CartService } from 'src/app/services/fragment/cart/cart.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,6 +14,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarComponent implements OnInit {
   navbarCart: NavbarCart[] = [];
+  applicationUserId: string = "";
 
   userIsLoggedIn: boolean = false;
   userIsAdmin: boolean = false;
@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
   faShoppingCart = faShoppingCart;
 
   constructor(
-    private navbarService: NavbarService,
     private cartService: CartService,
     private authService: AuthService, 
     private jwtHelper: JwtHelperService,
@@ -50,9 +49,7 @@ export class NavbarComponent implements OnInit {
         if (token && !this.jwtHelper.isTokenExpired(token)) {
 
           var applicationUserId = this.jwtHelper.decodeToken(token)['applicationUserId'];
-
-          // this.navbarService.getApplicationUserCart(applicationUserId)
-          //   .subscribe(navbarCart => this.navbarCart = navbarCart);
+          this.applicationUserId = applicationUserId;
 
           this.cartService.getNavbarApplicationUserCart(applicationUserId)
             .subscribe(navbarCart => this.navbarCart = navbarCart);
@@ -65,14 +62,34 @@ export class NavbarComponent implements OnInit {
 
     });
 
-    // When 
     this.subscription = this.cartService.onAddProductToCart()
       .subscribe((value) => this.navbarCart.push(value));
+
+    this.subscription = this.cartService.onEditProductInCart()
+      .subscribe(() => {
+
+        const token = localStorage.getItem("jwt");
+        if (token && !this.jwtHelper.isTokenExpired(token)) {
+
+          var applicationUserId = this.jwtHelper.decodeToken(token)['applicationUserId'];
+          this.applicationUserId = applicationUserId;
+
+          this.cartService.getNavbarApplicationUserCart(applicationUserId)
+            .subscribe(navbarCart => this.navbarCart = navbarCart);
+
+        } else {
+          // If jwt does not exist set the navbarCart to an empty array
+          this.navbarCart = [];
+        }
+      });
+
+    this.subscription = this.cartService.onDeleteProductInCart()
+      .subscribe((id) => this.navbarCart = this.navbarCart.filter(item => item.id != id));
   }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['logout']);
-  }
+  };
 
 }

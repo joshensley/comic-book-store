@@ -44,6 +44,8 @@ import { ProductInventoryUnitComponent } from './components/admin/product-invent
 import { CreateProductInventoryUnitComponent } from './components/admin/product-inventory-unit/create-product-inventory-unit/create-product-inventory-unit.component';
 import { DeleteProductInventoryUnitComponent } from './components/admin/product-inventory-unit/delete-product-inventory-unit/delete-product-inventory-unit.component';
 import { IndexProductComponent } from './components/main/product-page/index-product/index-product.component';
+import { IndexCartComponent } from './components/main/cart-page/index-cart/index-cart.component';
+import { IndexCheckOutComponent } from './components/main/check-out-page/index-check-out/index-check-out.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -86,7 +88,9 @@ export function tokenGetter() {
     ProductInventoryUnitComponent,
     CreateProductInventoryUnitComponent,
     DeleteProductInventoryUnitComponent,
-    IndexProductComponent
+    IndexProductComponent,
+    IndexCartComponent,
+    IndexCheckOutComponent
   ],
   imports: [
     BrowserModule,

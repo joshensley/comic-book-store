@@ -1,0 +1,111 @@
+<div class="container">
+
+    <div *ngIf="loading === true" class="text-center mt-5">
+        <div  class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    
+
+    <div *ngIf="loading === false">
+
+        <!-- Notification -->
+        <div *ngIf="notification" class="alert alert-danger alert-dismissible mt-3 text-center" role="alert" style="width: 350px; margin: 0 auto;">
+
+            <div [ngSwitch]="actionType">
+                <div *ngSwitchCase="'error'">
+                    <strong>{{ notificationDescription }}</strong>
+                </div>
+                <div *ngSwitchDefault></div>
+            </div>
+            <button type="button" class="btn-close" (click)="clearNotification()" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
+         <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" style="margin-top: 20px;">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Your Cart</li>
+            </ol>
+        </nav>
+
+        <h5>{{ cartDescription }}</h5>
+        <hr />
+
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-sm btn-primary" [routerLink]="['/check-out', applicationUserId]" style="float: right; margin-left: 10px;">CHECK OUT</a>
+                <a class="btn btn-sm btn-dark" routerLink="/" style="float: right;">CONTINUE SHOPPING</a>
+            </div>
+        </div>
+
+        <div *ngIf="cart.length > 0; else elseblock">
+          <table class="table" style="margin-top: 20px">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">CART ITEMS</th>
+                <th scope="col">PRICE</th>
+                <th scope="col" class="text-center">QUANTITY</th>
+                <th scope="col">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cart">
+                <th scope="row">
+                    <img src="{{ item.imageTitle == null ? '/assets/images/default.jpg' : item.imageUrl }}" alt="product" style="width:30px; height:30px" /> {{ item.productName }}
+                </th>
+                <td>${{ item.price.toFixed(2) }}</td>
+                <td class="text-center">
+                  <fa-icon [icon]="faChevronUp" style="cursor: pointer;" (click)="addQuantity(item)"></fa-icon>  
+                    {{ item.quantity }}
+                  <fa-icon [icon]="faChevronDown" style="cursor: pointer;" (click)="removeQuantity(item)"></fa-icon>
+                </td>
+                <td>${{ item.totalPrice.toFixed(2) }} <fa-icon [icon]="faTimes" (click)="onDelete(item.id)"  style="float: right; cursor: pointer;"></fa-icon></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row justify-content-end">
+            <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12">
+              <table class="table" style="margin-top: 20px;">
+                <tbody>
+                  <tr>
+                    <td><strong>Subtotal:</strong></td>
+                    <td class="text-end">$ {{ subtotal.toFixed(2) }}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Shipping:</strong></td>
+                    <td class="text-end"><small>Calculated at check out</small></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tax:</strong></td>
+                    <td class="text-end">$ {{ tax.toFixed(2) }}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Grand Total:</strong></td>
+                    <td class="text-end">$ {{ grandTotal.toFixed(2) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <ng-template #elseblock>
+          <div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
+            <h1>No Items in Cart</h1>
+          </div>
+        </ng-template>
+
+        <div class="row">
+          <div class="col">
+              <a class="btn btn-sm btn-primary" [routerLink]="['/check-out', applicationUserId]" style="float: right; margin-left: 10px;">CHECK OUT</a>
+              <a class="btn btn-sm btn-dark" routerLink="/" style="float: right;">CONTINUE SHOPPING</a>
+          </div>
+      </div>
+
+
+    </div>
+</div>
